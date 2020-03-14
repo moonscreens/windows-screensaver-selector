@@ -13,7 +13,8 @@ body, html {
     justify-content: center;
     align-items: center;
 
-    font-family: MS Sans Serif, sans-serif;
+    font-family: "MS Sans Serif Pixelated", sans-serif;
+    font-weight: lighter;
     letter-spacing: 0.5px;
     font-optical-sizing: none;
     font-size: 8pt; // accurate to windows 95
@@ -25,6 +26,10 @@ body, html {
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
+    font-smooth: never;
+    -webkit-font-smoothing : none;
+    text-shadow: 0px 0px 0px black;
+    -ms-interpolation-mode: nearest-neighbor;
     cursor: default;
 }
 
@@ -48,7 +53,7 @@ iframe {
 .window {
     @extend .border;
     @extend .window-shadow;
-    transform: scale(1);
+    transform: scale(2);
     background-color: #C0C0C0;
     padding: 1px;
 
@@ -107,9 +112,12 @@ iframe {
     justify-content: flex-start;
     align-items: flex-end;
     padding-left: 2px;
+    position: relative;
+    z-index: 5;
 }
 .window-tabs__tab {
     position: relative;
+    background: #C0C0C0;
 
     padding: 3px;
     border: 1px outset #ffffff;
@@ -120,12 +128,17 @@ iframe {
     &.active {
         padding: 4px;
         border-bottom: 1px solid #C0C0C0;
+        box-shadow: 0px 1px 0px #C0C0C0;
         margin: -1px;
         z-index: 2;
+
     }
 }
 
 .window-tabs__content {
+    position: relative;
+    z-index: -11;
+    @extend .window-shadow;
     border: 1px outset #fff;
     padding: 13px;
 }
