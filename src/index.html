@@ -10,15 +10,17 @@
 </head>
 
 <body>
+	<iframe class="screensaver"></iframe>
+
 	<div class="window">
 		<div class="title-bar">
 			<span class="title-bar-title">Display Properties</span>
 			<div class="title-bar-controls">
 				<div class="title-bar-control title-bar-control__help">
-					
+
 				</div>
 				<div class="title-bar-control title-bar-control__exit">
-					
+
 				</div>
 			</div>
 		</div>
@@ -42,20 +44,98 @@
 				<div class="monitor">
 					<iframe src="https://3d-pipes.opl.io/"></iframe>
 				</div>
-				
+
 				<div class="window-settings__container">
 					<div class="window-settings__title">
 						Screen Saver
 					</div>
 
-					<br />
-					poop lol
+					<div class="flex-row">
+						<div data-url="https://3d-pipes.opl.io/" class="dropdown__container">
+
+							<div class="dropdown__selected">
+								3D Pipes
+							</div>
+							<div class="dropdown__icon"></div>
+							<div class="dropdown__options">
+								<div class="dropdown__option">
+									blank
+								</div>
+								<div data-url="https://3d-pipes.opl.io/" class="dropdown__option">
+									3D Pipes
+								</div>
+							</div>
+						</div>
+
+						<button style="margin: 0px 6px">
+							Settings...
+						</button>
+						<button>
+							Preview
+						</button>
+					</div>
+
+					<div class="flex-row" style="margin-top: 6px;">
+						<div class="fake-input-checkbox">
+							Password protected
+						</div>
+
+						<button style="margin: 0px 6px;" disabled>
+							Change...
+						</button>
+
+						<u>W</u>ait
+						<div style="margin: 0px 6px;" class="fake-input-number">
+							1
+						</div>
+						minutes
+					</div>
 				</div>
 				<div class="window-settings__container">
 					<div class="window-settings__title">
 						Energy saving features of monitor
 					</div>
+
+					<div class="flex-row">
+						<img src="/energystar.png" style="margin: 0 20px;">
+						<div>
+							<div class="flex-row">
+								<div style="width: 103px;" class="fake-input-checkbox disabled-text">
+									Low-power standby
+								</div>
+
+								<div
+									style="margin: 0px 6px;"
+									class="fake-input-number disabled">1</div>
+
+								<span>
+									minutes
+								</span>
+							</div>
+							<div style="margin-top: 6px;" class="flex-row">
+								<div style="width: 103px;" class="fake-input-checkbox disabled-text">
+									Shut off monitor
+								</div>
+
+								<div
+									style="margin: 0px 6px;"
+									class="fake-input-number disabled">1</div>
+
+								<span>
+									minutes
+								</span>
+							</div>
+						</div>
+					</div>
+
 				</div>
+
+			</div>
+
+			<div class="flex-row" style="justify-content: flex-end; align-items: center;">
+				<button>OK</button>
+				<button style="margin: 6px;">Cancel</button>
+				<button>Apply</button>
 			</div>
 		</div>
 	</div>

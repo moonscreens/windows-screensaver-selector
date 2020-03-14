@@ -3,7 +3,7 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100%;
-    background: #008080;
+    background: transparent;
     color: black;
     overflow: hidden;
     
@@ -22,6 +22,14 @@ body, html {
     -webkit-font-smooth: none;
 }
 
+.screensaver {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 * {
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
@@ -31,6 +39,79 @@ body, html {
     text-shadow: 0px 0px 0px black;
     -ms-interpolation-mode: nearest-neighbor;
     cursor: default;
+
+    background-repeat: no-repeat;
+}
+
+.fake-input-checkbox {
+    vertical-align: top;
+    line-height: 10px;
+
+    position: relative;
+    padding-left: 15px;
+
+    &::first-letter {
+        text-decoration: underline;
+    }
+    
+    &:after {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 3;
+        content: ' ';
+        width: 10px;
+        height: 10px;
+        background: white;
+        border-radius: none;
+        border: 1px inset #C0C0C0;
+        box-shadow: 1px 1px 0px #ffffff, 0px 1px 0px #ffffff, 1px 0px 0px #ffffff, inset 1px 1px 0px #000000;
+    }
+}
+    
+.fake-input-number {
+    position: relative;
+    background: white;
+    width: 45px;
+    height: 20px;
+    box-shadow: 1px 1px 0px #ffffff, 0px 1px 0px #ffffff, 1px 0px 0px #ffffff, inset 1px 1px 0px #000000;
+
+
+    display: flex;
+    align-items: center;
+    padding-left: 1px;
+    
+    border: 1px inset #C0C0C0;
+
+    &.disabled {
+        background: transparent;
+        color: #808080;
+    }
+    
+    
+    &:after, &:before {
+        position: absolute;
+        right: 1px;
+        top: 0px;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 3;
+        content: ' ';
+        width: 14px;
+        height: 7px;
+        background-color: #C0C0C0;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAHCAIAAAC3JetOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABDSURBVChTYzxw4AADkQCo9D8RoKGhgQWi4eDBgxAGHsAEpVGBg4MDlIUEsCiFqMNUjUUp0PUQAOXDACgEMEWxAAYGAJBmOawFGxQHAAAAAElFTkSuQmCC);
+        border-radius: none;
+        border: 1px inset #C0C0C0;
+        @extend .window-shadow;
+    }
+    &:before {
+        top: unset;
+        bottom: 1px;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAHCAIAAAC3JetOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABASURBVChTYzxw4AADkQCo9D8RoKGhgQWi4eDBgxAGHsAEpZGAAwxA+TCARSnE9Zh+wKIUCLD6FRQCWCXQAQMDAJJ1OazgkZLuAAAAAElFTkSuQmCC);
+    }
 }
 
 iframe {
@@ -49,11 +130,22 @@ iframe {
 .window-shadow {
     box-shadow: 1px 1px 0px #000000, 0px 1px 0px #000000, 1px 0px 0px #000000;
 }
+.window-shadow-light {
+    box-shadow: 1px 1px 0px #ffffff, 0px 1px 0px #ffffff, 1px 0px 0px #ffffff;
+}
+.inset-window-shadow {
+    box-shadow: inset 1px 1px 0px #000000;
+}
 
+.flex-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
 .window {
     @extend .border;
     @extend .window-shadow;
-    transform: scale(2);
+    transform: scale(1);
     background-color: #C0C0C0;
     padding: 1px;
 
@@ -106,6 +198,9 @@ iframe {
     padding: 5px;
     width: 100%;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column
+    ;
 }
 .window-tabs__tabs {
     display: flex;
@@ -137,7 +232,6 @@ iframe {
 
 .window-tabs__content {
     position: relative;
-    z-index: -11;
     @extend .window-shadow;
     border: 1px outset #fff;
     padding: 13px;
@@ -161,8 +255,9 @@ iframe {
 .window-settings__container {
     @extend .border-ridge;
     margin-top: 10px;
-    padding: 7px;
+    padding: 10px 7px;
     position: relative;
+
 }
 .window-settings__title {
     position: absolute;
@@ -174,4 +269,31 @@ iframe {
     &::first-letter {
         text-decoration: underline;
     }
+}
+
+
+@import '/scss/dropdown.scss';
+
+button {
+    background: #C0C0C0;
+    border: 1px solid white;
+    border-bottom: 1px solid #808080;
+    border-right: 1px solid #808080;
+    font-size: 8pt; // accurate to windows 95
+    padding: 4px 12px;
+    @extend .window-shadow;
+
+    outline: none;
+    &:active {
+        background: #808080;
+        border: 1px dotted black;
+    }
+    &:disabled {
+        text-shadow: 1px 1px 0px white;
+    }
+}
+
+.disabled-text {
+    text-shadow: 1px 1px 0px white;
+    color: #808080;
 }
