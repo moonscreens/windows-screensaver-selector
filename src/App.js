@@ -5,6 +5,16 @@ import './App.css';
 import Tabs from './components/Tabs';
 import ScreenSaverSelect from './pages/ScreenSaverSelect';
 import Cursor from './components/Cursor';
+import Button from './components/Button';
+
+import styled from '@emotion/styled';
+
+
+const Row = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+	align-items: center;
+`;
 
 class App extends React.Component {
 	render () {
@@ -26,6 +36,12 @@ class App extends React.Component {
 							Fourth tabs content
 						</div>
 					</Tabs>
+					
+					<Row style={{justifyContent: 'flex-end'}}>
+						<Button>Ok</Button>
+						<Button>Cancel</Button>
+						<Button>Apply</Button>
+					</Row>
 				</Window>
 			</>
 		);

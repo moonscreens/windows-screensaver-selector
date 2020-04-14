@@ -5,6 +5,7 @@ import {border, window_shadow} from '../components/Styles';
 
 import SettingsContainer from '../components/SettingsContainer';
 import Button from '../components/Button';
+import Checkbox from '../components/Checkbox';
 
 const Monitor = styled.div`
 	background-image: url(/monitor.png);
@@ -55,6 +56,23 @@ class ScreenSaverSelect extends React.Component {
 						<Button>
 							Preview
 						</Button>
+					</Row>
+				</SettingsContainer>
+				<SettingsContainer title="Energy saving features of monitor">
+					<Row>
+						<img src="/energystar.png" style={{margin: '0 20px'}} />
+						<div>
+							<Row>
+								<Checkbox disabled={true}>
+									Low-power standby
+								</Checkbox>
+							</Row>
+							<Row style={{marginTop: '6px'}}>
+								<Checkbox disabled={true}>
+									Shut off monitor
+								</Checkbox>
+							</Row>
+						</div>
 					</Row>
 				</SettingsContainer>
 			</div>
