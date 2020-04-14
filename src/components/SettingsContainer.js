@@ -5,9 +5,6 @@ import { border_ridge } from './Styles';
 
 
 class SettingsContainer extends React.Component {
-	constructor(props) {
-		super(props);
-	}
 	render () {
 		return <div className={css`
 			${border_ridge}

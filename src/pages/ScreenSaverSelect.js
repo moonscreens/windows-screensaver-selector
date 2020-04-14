@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {border, window_shadow} from '../components/Styles';
 
 import SettingsContainer from '../components/SettingsContainer';
 import Button from '../components/Button';
@@ -60,7 +59,7 @@ class ScreenSaverSelect extends React.Component {
 				</SettingsContainer>
 				<SettingsContainer title="Energy saving features of monitor">
 					<Row>
-						<img src="/energystar.png" style={{margin: '0 20px'}} />
+						<img alt="Moon Star" src="/energystar.png" style={{margin: '0 20px'}} />
 						<div>
 							<Row>
 								<Checkbox disabled={true}>
