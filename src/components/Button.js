@@ -23,6 +23,7 @@ export default styled.div`
             position: absolute;
             top: 3px;
             left: 3px;
+            border-radius: 3px;
             width: calc(100% - 8px);
             height: calc(100% - 8px);
             content: ' ';
