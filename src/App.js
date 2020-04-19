@@ -40,7 +40,7 @@ class App extends React.Component {
 					<Row style={{justifyContent: 'flex-end'}}>
 						<Button>Ok</Button>
 						<Button>Cancel</Button>
-						<Button>Apply</Button>
+						<Button style={{marginRight: '5px'}}>Apply</Button>
 					</Row>
 				</Window>
 			</>

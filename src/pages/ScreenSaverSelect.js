@@ -4,13 +4,14 @@ import styled from '@emotion/styled';
 
 import SettingsContainer from '../components/SettingsContainer';
 import Button from '../components/Button';
+import Select from '../components/Select';
 import Checkbox from '../components/Checkbox';
 
 const Monitor = styled.div`
 	background-image: url(/monitor.png);
     width: 184px;
     height: 169px;
-    padding: 17px 16px 40px 16px;
+    padding: 16px 16px 40px 15px;
     box-sizing: border-box;
 
     margin: auto auto 20px auto;
@@ -18,7 +19,8 @@ const Monitor = styled.div`
     & > iframe, & > div {
         width: 100%;
 		height: 100%;
-		overflow: hidden
+		overflow: hidden;
+		border: none;
     }
 `;
 
@@ -28,27 +30,61 @@ const Row = styled.div`
 	align-items: center;
 `;
 
+const screensaverArray = [
+	{
+		name: 'Blank',
+		src: 'https://blank.opl.io',
+	},
+	{
+		name: '3D Pipes',
+		src: 'https://3d-pipes.opl.io',
+	},
+	{
+		name: '3D Text',
+		src: 'https://3d-text.opl.io',
+	},
+	{
+		name: 'Starfield',
+		src: 'https://starfield.opl.io',
+	},
+];
+const screensavers = {};
+for (let index = 0; index < screensaverArray.length; index++) {
+	const element = screensaverArray[index];
+	screensavers[element.name] = element;
+}
+
+const screensaverNames = [];
+for (let index = 0; index < screensaverArray.length; index++) {
+	const element = screensaverArray[index];
+	screensaverNames.push(element.name);
+}
+
 class ScreenSaverSelect extends React.Component {
 	constructor (props) {
 		super(props);
 		this.state = {
-
+			screensaverKey: screensaverArray[0].name,
 		}
 	}
 
+	screensaverSwitchListener (e) {
+		this.setState({
+			screensaverKey: e.value,
+		})
+	}
 
 	render() {
+		const screensaver = screensavers[this.state.screensaverKey];
+
 		return (
 			<div>
 				<Monitor>
-					<div style={{color: 'white'}}>
-						What the fuck did you just fucking say about me, you little bitch? I’ll have you know I graduated top of my class in the Navy Seals, and I’ve been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills.
-						I am trained in gorilla warfare and I’m the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words.
-						You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You’re fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that’s just with my bare hands.
-					</div>
+					<iframe src={screensaver.src}></iframe>
 				</Monitor>
 				<SettingsContainer title="Screen Saver">
 					<Row>
+						<Select options={screensaverNames} onChange={this.screensaverSwitchListener.bind(this)} />
 						<Button>
 							Settings...
 						</Button>
@@ -56,10 +92,18 @@ class ScreenSaverSelect extends React.Component {
 							Preview
 						</Button>
 					</Row>
+					<Row style={{margin: '6px 0px 0px 0px'}}>
+						<Checkbox>
+							Password protected
+						</Checkbox>
+						<Button disabled={true} style={{margin: '0px 6px'}}>
+							Change...
+						</Button>
+					</Row>
 				</SettingsContainer>
 				<SettingsContainer title="Energy saving features of monitor">
 					<Row>
-						<img alt="Moon Star" src="/energystar.png" style={{margin: '0 20px'}} />
+						<img alt="Moon Star" src="/energystar.png" style={{margin: '0 20px', pointerEvents: 'none'}} />
 						<div>
 							<Row>
 								<Checkbox disabled={true}>
