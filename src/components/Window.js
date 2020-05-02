@@ -1,60 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {border, window_shadow} from './Styles';
-
-const TitleBar = styled.div`
-    background-color: #000080;
-    color: #ffffff;
-    padding: 2px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-`;
-
-const TitleBarTitle = styled.span`
-	font-weight: 500;
-`;
-
-const TitleBarControls = styled.div`
-    display: flex;
-`;
-
-const TitleBarControl = styled.div`
-	${border}
-	${window_shadow}
-    background-color: #C0C0C0;
-    color: black;
-    text-align: center;
-    padding: 1px;
-
-    margin: 1.5px;
-
-    width: 13px;
-    height: 11px;
-
-    background-size: auto;
-    background-position: center;
-	background-repeat: no-repeat;
-	
-	&[data-role=help] {
-		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAALCAIAAAAr0JA2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABHSURBVChTYzxw4AADEQBdnYODA5TFwIAsxQSlwQCiCCgNUYGsB0UdHoDdfXCDIVwgwGIepiIgoMxeTIDdXojVyIC69jIwAAD3IxvShLBIHAAAAABJRU5ErkJggg==');
-	}
-	&[data-role=exit] {
-		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAALCAIAAAAr0JA2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABQSURBVChTrZC7EQAgCEPRyRyd0fSAC5BGC1P4y0OiQ1XlQTPmm5JbptiY6klyHgCGL5CK84E7qhbng0f1zFFfqHHI5JdVtL33jGhH6N9/FtlxCSTUXP5dMQAAAABJRU5ErkJggg==');
-	}
-`;
-
 const WindowContainer = styled.div`
-	${border}
-    ${window_shadow}
     transform: scale(1);
-    background-color: #C0C0C0;
-    padding: 1px;
-
     min-width: 403px;
-	box-sizing: border-box;
-	
 	position: absolute;
 `;
 
@@ -123,19 +72,18 @@ class Window extends React.Component {
 
 	render() {
 		return (
-			<WindowContainer onMouseUp={this.mouseUpListener.bind(this)} style={this.state.style}>
-				<TitleBar onMouseDown={this.mouseDownListener.bind(this)}>
-					<TitleBarTitle>{this.props.title}</TitleBarTitle>
-					<TitleBarControls>
-						{this.props.controlMinimize ? <TitleBarControl data-role="minimize" /> : <></>}
-						{this.props.controlMaximize ? <TitleBarControl data-role="maximize" /> : <></>}
-						{this.props.controlHelp ? <TitleBarControl data-role="help" /> : <></>}
-						{this.props.controlExit ? <TitleBarControl data-role="exit" /> : <></>}
-					</TitleBarControls>
-				</TitleBar>
-
-				{this.props.children}
-
+			<WindowContainer className="window" onMouseUp={this.mouseUpListener.bind(this)} style={this.state.style}>
+				<div className="title-bar" onMouseDown={this.mouseDownListener.bind(this)}>
+					<div className="title-bar-text">{this.props.title}</div>
+					<div className="title-bar-controls">
+						<button aria-label="Minimize" />
+						<button aria-label="Maximize" />
+						<button aria-label="Close" />
+					</div>
+				</div>
+				<div className="window-body">
+					{this.props.children}
+				</div>
 			</WindowContainer>
 		);
 	}

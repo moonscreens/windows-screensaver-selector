@@ -5,7 +5,6 @@ import './App.css';
 import Tabs from './components/Tabs';
 import ScreenSaverSelect from './pages/ScreenSaverSelect';
 import Cursor from './components/Cursor';
-import Button from './components/Button';
 
 import styled from '@emotion/styled';
 
@@ -38,9 +37,9 @@ class App extends React.Component {
 					</Tabs>
 					
 					<Row style={{justifyContent: 'flex-end'}}>
-						<Button>Ok</Button>
-						<Button>Cancel</Button>
-						<Button style={{marginRight: '5px'}}>Apply</Button>
+						<button>Ok</button>
+						<button style={{margin: '0px 5px'}}>Cancel</button>
+						<button style={{marginRight: '4px'}}>Apply</button>
 					</Row>
 				</Window>
 			</>

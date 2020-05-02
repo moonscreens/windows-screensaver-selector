@@ -1,18 +1,31 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import { inset_window_shadow } from './Styles';
-
 const SelectEle = styled.div`
-    ${inset_window_shadow}
-    background: white;
-    display: flex;
-    align-items: center;
-    position: relative;
-    border: 1px inset #C0C0C0;
-    outline: none;
+	
+	font-family: "Pixelated MS Sans Serif",Arial;
+	-webkit-font-smoothing: none;
+	font-size: 11px;
 
-    width: 178px;
+	padding: 3px 4px;
+	box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+	background-color: #fff;
+	box-sizing: border-box;
+
+	min-width: 173px;
+
+	appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    padding-right: 32px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 0H0v16h1V1h14V0z' fill='%23DFDFDF'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 1H1v14h1V2h12V1H2z' fill='%23fff'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 17H0v-1h15V0h1v17z' fill='%23000'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 1h-1v14H1v1h14V1z' fill='gray'/%3E%3Cpath fill='silver' d='M2 2h12v13H2z'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M11 6H4v1h1v1h1v1h1v1h1V9h1V8h1V7h1V6z' fill='%23000'/%3E%3C/svg%3E");
+    background-position: top 2px right 2px;
+    background-repeat: no-repeat;
+	border-radius: 0;
+	
+	height: 21px;
+	
 
     &:focus-within > .dropdown__selected, &:focus > .dropdown__selected, &.active > .dropdown__selected {
         border: 1px dotted white;
@@ -20,15 +33,9 @@ const SelectEle = styled.div`
         color: white;
 	}
 
-	.dropdown__icon {
-		background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAARCAIAAABbzbuTAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABoSURBVDhPYzxw4AAD0cDBwYEBqOE/caChoQGohwWi9eDBgxAGQcAEpYkGtNcA9QMEgAIBA6AFI4oNmEGMKYLuJGQVmKqBAIsfIOqwqgYC7J7GpRoISA6lQagBlLzxeBENQBIsKYCBAQDIeUi9MitYJgAAAABJRU5ErkJggg==);
-		width: 18px;
-		height: 17px;
-	}
-
 	.dropdown__selected {
 		background: white;
-		padding: 3px 1px;
+		padding: 1px 1px;
 		line-height: 1;
 		margin: 1px;
 		width: 100%;
@@ -130,7 +137,6 @@ class Select extends React.Component {
 			<div className="dropdown__selected">
 				{this.props.options[this.state.selected]}
 			</div>
-			<div className="dropdown__icon"></div>
 			<div className="dropdown__options">
 				{this.state.options}
 			</div>

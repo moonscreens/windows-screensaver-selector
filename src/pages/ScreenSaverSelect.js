@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 
 
 import SettingsContainer from '../components/SettingsContainer';
-import Button from '../components/Button';
 import Select from '../components/Select';
 import Checkbox from '../components/Checkbox';
 
@@ -61,14 +60,14 @@ for (let index = 0; index < screensaverArray.length; index++) {
 }
 
 class ScreenSaverSelect extends React.Component {
-	constructor (props) {
+	constructor(props) {
 		super(props);
 		this.state = {
 			screensaverKey: screensaverArray[0].name,
 		}
 	}
 
-	screensaverSwitchListener (e) {
+	screensaverSwitchListener(e) {
 		this.setState({
 			screensaverKey: e.value,
 		})
@@ -80,40 +79,38 @@ class ScreenSaverSelect extends React.Component {
 		return (
 			<div>
 				<Monitor>
-					<iframe src={screensaver.src}></iframe>
+					<iframe title="Screensaver preview" src={screensaver.src}></iframe>
 				</Monitor>
 				<SettingsContainer title="Screen Saver">
 					<Row>
 						<Select options={screensaverNames} onChange={this.screensaverSwitchListener.bind(this)} />
-						<Button>
+						<button style={{ marginLeft: '5px', marginRight: '5px' }}>
 							Settings...
-						</Button>
-						<Button>
+						</button>
+						<button>
 							Preview
-						</Button>
+						</button>
 					</Row>
-					<Row style={{margin: '6px 0px 0px 0px'}}>
-						<Checkbox>
+					<Row style={{ margin: '6px 0px 0px 0px' }}>
+						<Checkbox disabled>
 							Password protected
 						</Checkbox>
-						<Button disabled={true} style={{margin: '0px 6px'}}>
+						<button disabled={true} style={{ margin: '0px 6px' }}>
 							Change...
-						</Button>
+						</button>
 					</Row>
 				</SettingsContainer>
 				<SettingsContainer title="Energy saving features of monitor">
-					<Row>
-						<img alt="Moon Star" src="/energystar.png" style={{margin: '0 20px', pointerEvents: 'none'}} />
+					<Row style={{ flexWrap: "nowrap" }}>
+						<img alt="Moon Star" src="/energystar.png" style={{ margin: '5px 20px', pointerEvents: 'none' }} />
 						<div>
 							<Row>
-								<Checkbox disabled={true}>
-									Low-power standby
-								</Checkbox>
+								To adjust the power settings for your monitor, click Settings
 							</Row>
-							<Row style={{marginTop: '6px'}}>
-								<Checkbox disabled={true}>
-									Shut off monitor
-								</Checkbox>
+							<Row style={{ justifyContent: "flex-end" }}>
+								<button disabled>
+									Settings...
+								</button>
 							</Row>
 						</div>
 					</Row>

@@ -3,23 +3,8 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100%;
-    background: black;
-    color: black;
     overflow: hidden;
-    
     position: relative;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-family: "MS Sans Serif Pixelated", sans-serif;
-    font-weight: lighter;
-    letter-spacing: 0.5px;
-    font-optical-sizing: none;
-    font-size: 8pt;
-    -webkit-font-smooth: never;
-    -webkit-font-smooth: none;
 }
 
 * {
@@ -27,10 +12,6 @@ body, html {
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
-    font-smooth: never;
-    -webkit-font-smoothing : none;
-    text-shadow: 0px 0px 0px black;
-    -ms-interpolation-mode: nearest-neighbor;
     cursor: default;
     background-repeat: no-repeat;
 }
