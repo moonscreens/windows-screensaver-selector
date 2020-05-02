@@ -41,7 +41,7 @@ class App extends React.Component {
 		this.state = {
 			lastInteraction: 0,
 			delay: 2500,
-			hidden: false,
+			hidden: true,
 
 			screensaverURL: 'https://blank.opl.io/',
 		}
