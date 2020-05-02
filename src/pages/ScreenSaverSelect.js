@@ -7,7 +7,7 @@ import Select from '../components/Select';
 import Checkbox from '../components/Checkbox';
 
 const Monitor = styled.div`
-	background-image: url(/monitor.png);
+	background-image: url('/monitor.png');
     width: 184px;
     height: 169px;
     padding: 16px 16px 40px 15px;
@@ -31,10 +31,6 @@ const Row = styled.div`
 
 const screensaverArray = [
 	{
-		name: 'Blank',
-		src: 'https://blank.opl.io',
-	},
-	{
 		name: '3D Pipes',
 		src: 'https://3d-pipes.opl.io',
 	},
@@ -45,6 +41,10 @@ const screensaverArray = [
 	{
 		name: 'Starfield',
 		src: 'https://starfield.opl.io',
+	},
+	{
+		name: 'Blank',
+		src: 'https://blank.opl.io',
 	},
 ];
 const screensavers = {};

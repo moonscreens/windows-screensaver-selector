@@ -39,7 +39,7 @@ class App extends React.Component {
 		super(props);
 
 		this.state = {
-			lastInteraction: Date.now(),
+			lastInteraction: 0,
 			delay: 2500,
 			hidden: false,
 
