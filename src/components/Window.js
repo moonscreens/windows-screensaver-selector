@@ -20,6 +20,13 @@ class Window extends React.Component {
 				minHeight: this.props.minHeight+'px',
 			},
 		}
+
+		if (this.props.x === 'auto') {
+			this.state.style.x = Math.floor(window.innerWidth/2 - this.props.width/2)+'px';
+		}
+		if (this.props.y === 'auto') {
+			this.state.style.y = Math.floor(window.innerHeight/2 - this.props.height/2)+'px';
+		}
 	}
 
 	updatePosition (x, y) {
@@ -95,8 +102,8 @@ Window.defaultProps = {
 	controlExit: true,
 	controlMinimize: false,
 	controlMaximize: false,
-	x: 0,
-	y: 0,
+	x: 'auto',
+	y: 'auto',
 	width: 403,
 	height: 465,
 	minWidth: 403,
