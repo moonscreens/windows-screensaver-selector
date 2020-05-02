@@ -66,7 +66,6 @@ class App extends React.Component {
 	}
 
 	screensaverChangeListener(e) {
-		console.log(e)
 		this.setState({
 			screensaverURL: e.url,
 		})

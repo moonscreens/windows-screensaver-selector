@@ -22,10 +22,10 @@ class Window extends React.Component {
 		}
 
 		if (this.props.x === 'auto') {
-			this.state.style.x = Math.floor(window.innerWidth/2 - this.props.width/2)+'px';
+			this.state.style.left = Math.floor(window.innerWidth/2 - this.props.width/2)+'px';
 		}
 		if (this.props.y === 'auto') {
-			this.state.style.y = Math.floor(window.innerHeight/2 - this.props.height/2)+'px';
+			this.state.style.top = Math.floor(window.innerHeight/2 - this.props.height/2)+'px';
 		}
 	}
 
