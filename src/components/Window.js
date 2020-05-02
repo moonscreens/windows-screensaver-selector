@@ -76,9 +76,9 @@ class Window extends React.Component {
 				<div className="title-bar" onMouseDown={this.mouseDownListener.bind(this)}>
 					<div className="title-bar-text">{this.props.title}</div>
 					<div className="title-bar-controls">
-						<button aria-label="Minimize" />
-						<button aria-label="Maximize" />
-						<button aria-label="Close" />
+						<button onClick={this.props.onMinimize} aria-label="Minimize" />
+						<button onClick={this.props.onMaximize} aria-label="Maximize" />
+						<button onClick={this.props.onExit} aria-label="Close" />
 					</div>
 				</div>
 				<div className="window-body">
@@ -101,6 +101,10 @@ Window.defaultProps = {
 	height: 465,
 	minWidth: 403,
 	minHeight: 465,
+
+	onMinimize: ()=>{},
+	onMaximize: ()=>{},
+	onExit: ()=>{},
 }
 
 export default Window;
