@@ -50,6 +50,7 @@ const screensaverArray = [
 const screensavers = {};
 for (let index = 0; index < screensaverArray.length; index++) {
 	const element = screensaverArray[index];
+	element.index = index;
 	screensavers[element.name] = element;
 }
 
@@ -62,8 +63,13 @@ for (let index = 0; index < screensaverArray.length; index++) {
 class ScreenSaverSelect extends React.Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			screensaverKey: screensaverArray[0].name,
+		}
+
+		if (localStorage.lastScreensaver && screensavers[localStorage.lastScreensaver]) {
+			this.state.screensaverKey = localStorage.lastScreensaver;
 		}
 
 		this.props.onChange({
@@ -72,6 +78,8 @@ class ScreenSaverSelect extends React.Component {
 	}
 
 	screensaverSwitchListener(e) {
+		localStorage.lastScreensaver = e.value;
+
 		this.setState({
 			screensaverKey: e.value,
 		})
@@ -91,7 +99,7 @@ class ScreenSaverSelect extends React.Component {
 				</Monitor>
 				<SettingsContainer title="Screen Saver">
 					<Row>
-						<Select options={screensaverNames} onChange={this.screensaverSwitchListener.bind(this)} />
+						<Select options={screensaverNames} selected={screensaver.index} onChange={this.screensaverSwitchListener.bind(this)} />
 						<button disabled style={{ marginLeft: '5px', marginRight: '5px' }}>
 							Settings...
 						</button>
