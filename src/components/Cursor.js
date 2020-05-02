@@ -24,6 +24,15 @@ class Cursor extends React.Component {
 		}
 		this.mouseListenerBound = this.mouseListener.bind(this);
 	}
+
+	intervalListener () {
+		if (this.state.lastInput+5000 < Date.now()) {
+			this.setState({
+				display: 'none',
+			})
+		}
+	}
+
 	mouseListener (e) {
 		this.setState({
 			left: e.clientX,
@@ -34,9 +43,11 @@ class Cursor extends React.Component {
 	}
 	componentDidMount () {
 		window.addEventListener('mousemove', this.mouseListenerBound);
+		this.state.interval = setInterval(this.intervalListener.bind(this), 1000);
 	}
 	componentWillUnmount () {
 		window.removeEventListener('mousemove', this.mouseListenerBound);
+		clearInterval(this.state.interval);
 	}
 	render () {
 		return <CursorElement style={{
