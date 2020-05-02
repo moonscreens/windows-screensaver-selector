@@ -65,12 +65,20 @@ class ScreenSaverSelect extends React.Component {
 		this.state = {
 			screensaverKey: screensaverArray[0].name,
 		}
+
+		this.props.onChange({
+			url: screensavers[this.state.screensaverKey].src
+		});
 	}
 
 	screensaverSwitchListener(e) {
 		this.setState({
 			screensaverKey: e.value,
 		})
+
+		this.props.onChange({
+			url: screensavers[e.value].src
+		});
 	}
 
 	render() {
@@ -84,10 +92,10 @@ class ScreenSaverSelect extends React.Component {
 				<SettingsContainer title="Screen Saver">
 					<Row>
 						<Select options={screensaverNames} onChange={this.screensaverSwitchListener.bind(this)} />
-						<button style={{ marginLeft: '5px', marginRight: '5px' }}>
+						<button disabled style={{ marginLeft: '5px', marginRight: '5px' }}>
 							Settings...
 						</button>
-						<button>
+						<button disabled>
 							Preview
 						</button>
 					</Row>
@@ -102,7 +110,7 @@ class ScreenSaverSelect extends React.Component {
 				</SettingsContainer>
 				<SettingsContainer title="Energy saving features of monitor">
 					<Row style={{ flexWrap: "nowrap" }}>
-						<img alt="Moon Star" src="/energystar.png" style={{ margin: '5px 20px', pointerEvents: 'none' }} />
+						<img alt="Moon Star" src="/energystar.png" style={{ margin: '5px 20px 0px', pointerEvents: 'none' }} />
 						<div>
 							<Row>
 								To adjust the power settings for your monitor, click Settings

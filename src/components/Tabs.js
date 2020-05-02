@@ -41,7 +41,9 @@ const TabContentContainer = styled.div`
     ${window_shadow}
 	position: relative;
     border: 1px outset #fff;
-    padding: 13px;
+	padding: 13px;
+	min-height: 370px;
+	box-sizing: border-box;
 `;
 
 
@@ -76,7 +78,7 @@ class TabComponent extends React.Component {
 				key={index}
 				className={index === this.state.activeTab ? 'active' : ''} 
 				data-tab={index} 
-				onClick={this.activateTab.bind(this)}>
+				/*onClick={this.activateTab.bind(this)}*/>
 				{tab.props.tab}
 			</Tab>);
 		}

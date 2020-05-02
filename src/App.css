@@ -15,3 +15,7 @@ body, html {
     cursor: default;
     background-repeat: no-repeat;
 }
+
+iframe {
+    pointer-events: none;
+}
