@@ -39,6 +39,10 @@ const screensaverArray = [
 		src: 'https://3d-text.opl.io',
 	},
 	{
+		name: 'Aquarium',
+		src: 'https://aquarium.opl.io',
+	},
+	{
 		name: 'Starfield',
 		src: 'https://starfield.opl.io',
 	},
