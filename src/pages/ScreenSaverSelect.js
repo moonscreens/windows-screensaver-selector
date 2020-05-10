@@ -50,6 +50,10 @@ const screensaverArray = [
 		name: 'Blank',
 		src: 'https://blank.opl.io',
 	},
+	{
+		name: 'Space Station (in progress)',
+		src: 'https://space-station.opl.io/',
+	},
 ];
 const screensavers = {};
 for (let index = 0; index < screensaverArray.length; index++) {
