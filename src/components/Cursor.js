@@ -44,7 +44,7 @@ class Cursor extends React.Component {
 	componentDidMount() {
 		window.addEventListener('mousemove', this.mouseListenerBound);
 		this.setState({
-			interval = setInterval(this.intervalListener.bind(this), 1000)
+			interval: setInterval(this.intervalListener.bind(this), 1000)
 		});
 	}
 	componentWillUnmount() {
