@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import uid from '../utils/uid';
 
 class Checkbox extends React.Component {
