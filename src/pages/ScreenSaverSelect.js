@@ -40,7 +40,7 @@ const screensaverArray = [
 	},
 	{
 		name: '3D Flying Objects',
-		src: 'https://3d-text-flying-objects.opl.io',
+		src: 'https://3d-flying-objects.opl.io',
 	},
 	{
 		name: 'Aquarium',
