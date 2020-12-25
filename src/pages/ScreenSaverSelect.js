@@ -55,6 +55,10 @@ const screensaverArray = [
 		src: 'https://blank.opl.io',
 	},
 	{
+		name: 'Jimbo (in progress)',
+		src: 'https://jimbo.opl.io/',
+	},
+	{
 		name: 'Space Station (in progress)',
 		src: 'https://space-station.opl.io/',
 	},
