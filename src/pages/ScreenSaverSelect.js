@@ -55,6 +55,10 @@ const screensaverArray = [
 		src: 'https://blank.opl.io',
 	},
 	{
+		name: 'Chat Racing (in progress)',
+		src: 'https://chat-racing.opl.io/',
+	},
+	{
 		name: 'Jimbo (in progress)',
 		src: 'https://jimbo.opl.io/',
 	},
