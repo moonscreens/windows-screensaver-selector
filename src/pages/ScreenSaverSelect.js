@@ -15,11 +15,14 @@ const Monitor = styled.div`
 
     margin: auto auto 20px auto;
 
-    & > iframe, & > div {
+    & > div {
         width: 100%;
 		height: 100%;
 		overflow: hidden;
 		border: none;
+		background-color: #008083;
+		background-position: center;
+		background-repeat: no-repeat;
     }
 `;
 
@@ -115,7 +118,7 @@ class ScreenSaverSelect extends React.Component {
 		return (
 			<div>
 				<Monitor>
-					<iframe title="Screensaver preview" src={screensaver.src}></iframe>
+					<div></div>
 				</Monitor>
 				<SettingsContainer title="Screen Saver">
 					<Row>
