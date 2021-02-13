@@ -54,10 +54,6 @@ const screensaverArray = [
 		src: 'https://starfield.opl.io',
 	},
 	{
-		name: 'Blank',
-		src: 'https://blank.opl.io',
-	},
-	{
 		name: 'Chat Racing',
 		src: 'https://chat-racing.opl.io',
 	},
@@ -72,6 +68,10 @@ const screensaverArray = [
 	{
 		name: 'Jimbo (kind of cringe lole)',
 		src: 'https://jimbo.opl.io',
+	},
+	{
+		name: 'Blank',
+		src: 'https://blank.opl.io',
 	},
 ];
 const screensavers = {};
