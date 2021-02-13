@@ -79,18 +79,18 @@ class App extends React.Component {
 					<Cursor />
 					<Window title="Display Properties" controlHelp={true} onExit={this.exitListener.bind(this)} onMinimize={this.exitListener.bind(this)}>
 						<Tabs activeTab={1}>
-							<div tab="Background">
+							<div tab="Background" disabled>
 								First tabs content
-						</div>
+							</div>
 							<div tab="Screen Saver">
 								<ScreenSaverSelect onChange={this.screensaverChangeListener.bind(this)} />
 							</div>
-							<div tab="Appearance">
+							<div tab="Appearance" disabled>
 								Third tabs content
-						</div>
-							<div tab="Settings">
+							</div>
+							<div tab="Settings" disabled>
 								Fourth tabs content
-						</div>
+							</div>
 						</Tabs>
 
 						<Row style={{ justifyContent: 'flex-end' }}>

@@ -35,6 +35,11 @@ const Tab = styled.div`
         margin: -1px;
         z-index: 2;
     }
+
+	&[data-disabled="true"] {
+		color: grey;
+		text-shadow: 1px 1px 0 #fff;
+	}
 `;
 
 const TabContentContainer = styled.div`
@@ -45,7 +50,6 @@ const TabContentContainer = styled.div`
 	min-height: 370px;
 	box-sizing: border-box;
 `;
-
 
 
 class TabComponent extends React.Component {
@@ -74,10 +78,11 @@ class TabComponent extends React.Component {
 			if (index === this.state.activeTab) {
 				TabContent = tab;
 			}
-			tabTitles.push(<Tab 
+			tabTitles.push(<Tab
 				key={index}
-				className={index === this.state.activeTab ? 'active' : ''} 
-				data-tab={index} 
+				className={index === this.state.activeTab ? 'active' : ''}
+				data-tab={index}
+				data-disabled={tab.props.disabled}
 				/*onClick={this.activateTab.bind(this)}*/>
 				{tab.props.tab}
 			</Tab>);
