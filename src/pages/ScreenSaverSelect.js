@@ -34,6 +34,10 @@ const Row = styled.div`
 
 const screensaverArray = [
 	{
+		name: 'Moon',
+		src: 'https://moon-space.opl.io',
+	},
+	{
 		name: '3D Pipes',
 		src: 'https://3d-pipes.opl.io',
 	},
