@@ -37,16 +37,19 @@ const Frame = styled.iframe`
 class App extends React.Component {
 	constructor(props) {
 		super(props);
+		this.isController = (document.location.search.match(/controller/) !== null);
 
 		this.state = {
 			lastInteraction: 0,
 			delay: 2500,
-			hidden: true,
+			hidden: !this.isController,
 
 			screensaverURL: 'https://blank.opl.io/',
 		}
 
-		window.addEventListener('mousemove', this.mouseMoveListener.bind(this));
+		if (!this.isController) {
+			window.addEventListener('mousemove', this.mouseMoveListener.bind(this));
+		}
 	}
 
 	mouseMoveListener() {
@@ -59,6 +62,8 @@ class App extends React.Component {
 	}
 
 	exitListener() {
+		if (this.isController) return;
+
 		this.setState({
 			hidden: true,
 			lastInteraction: Date.now(),
@@ -74,7 +79,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<>
-				<Frame src={this.state.screensaverURL} />
+				{this.isController ? <></> : <Frame src={this.state.screensaverURL} />}
 				<Wrapper disabled={this.state.hidden}>
 					<Cursor />
 					<Window title="Display Properties" controlHelp={true} onExit={this.exitListener.bind(this)} onMinimize={this.exitListener.bind(this)}>

@@ -73,39 +73,26 @@ const SelectEle = styled.div`
 `;
 
 class Select extends React.Component {
-	constructor (props) {
+	constructor(props) {
 		super(props);
 
 		this.state = {
 			active: false,
-			options: [],
 			selected: this.props.selected,
-		}
-
-		for (let index = 0; index < props.options.length; index++) {
-			const name = props.options[index];
-
-			this.state.options[index] = <div
-				key={index}
-				data-key={index}
-				value={name}
-				className="dropdown__option">
-				{name}
-			</div>
 		}
 
 		this.windowClickListenerBound = this.windowClickListener.bind(this);
 	}
 
-	componentDidMount () {
+	componentDidMount() {
 		window.addEventListener('click', this.windowClickListenerBound);
 	}
-	componentWillUnmount () {
+	componentWillUnmount() {
 		window.removeEventListener('click', this.windowClickListenerBound);
 	}
-	
 
-	windowClickListener (e) {
+
+	windowClickListener(e) {
 		if (this.state.active && !e.target.className.includes('dropdown__')) {
 			this.setState({
 				active: false,
@@ -113,7 +100,7 @@ class Select extends React.Component {
 		}
 	}
 
-	clickListener (e) {
+	clickListener(e) {
 		if (e.target.classList.contains('dropdown__option')) {
 			this.setState({
 				selected: Number(e.target.dataset.key),
@@ -132,13 +119,24 @@ class Select extends React.Component {
 		}
 	}
 
-	render () {
+	render() {
+		const options = [];
+		for (let index = 0; index < this.props.options.length; index++) {
+			const name = this.props.options[index];
+			options[index] = <div
+				key={index}
+				data-key={index}
+				value={name}
+				className="dropdown__option">
+				{name}
+			</div>
+		}
 		return <SelectEle className={this.state.active ? 'active ' : ' '} onClick={this.clickListener.bind(this)}>
 			<div className="dropdown__selected">
 				{this.props.options[this.state.selected]}
 			</div>
 			<div className="dropdown__options">
-				{this.state.options}
+				{options}
 			</div>
 		</SelectEle>
 	}

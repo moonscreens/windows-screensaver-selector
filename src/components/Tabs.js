@@ -62,7 +62,6 @@ class TabComponent extends React.Component {
 
 
 	activateTab(e) {
-		console.log(e.currentTarget)
 		this.setState({
 			activeTab: Number(e.currentTarget.dataset.tab),
 		});

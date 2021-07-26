@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import SettingsContainer from '../components/SettingsContainer';
 import Select from '../components/Select';
 import Checkbox from '../components/Checkbox';
+import { getListOfScreensavers } from '../utils/common';
 
 const Monitor = styled.div`
 	background-image: url('/monitor.png');
@@ -32,96 +33,110 @@ const Row = styled.div`
 	align-items: center;
 `;
 
-const screensaverArray = [
-	{
-		name: 'Moon',
-		src: 'https://moon-space.opl.io',
-	},
-	{
-		name: '3D Pipes',
-		src: 'https://3d-pipes.opl.io',
-	},
-	{
-		name: '3D Text',
-		src: 'https://3d-text.opl.io',
-	},
-	{
-		name: '3D Flying Objects',
-		src: 'https://3d-flying-objects.opl.io',
-	},
-	{
-		name: 'Aquarium',
-		src: 'https://aquarium.opl.io',
-	},
-	{
-		name: 'Starfield',
-		src: 'https://starfield.opl.io',
-	},
-	{
-		name: 'Chat Racing',
-		src: 'https://chat-racing.opl.io',
-	},
-	{
-		name: 'PS2 (needs update)',
-		src: 'https://ps2.opl.io',
-	},
-	{
-		name: 'Space Station (in progress)',
-		src: 'https://space-station.opl.io',
-	},
-	{
-		name: 'Jimbo (kind of cringe lole)',
-		src: 'https://jimbo.opl.io',
-	},
-	{
-		name: 'Blank',
-		src: 'https://blank.opl.io',
-	},
-];
-const screensavers = {};
-for (let index = 0; index < screensaverArray.length; index++) {
-	const element = screensaverArray[index];
-	element.index = index;
-	screensavers[element.name] = element;
-}
-
-const screensaverNames = [];
-for (let index = 0; index < screensaverArray.length; index++) {
-	const element = screensaverArray[index];
-	screensaverNames.push(element.name);
-}
-
 class ScreenSaverSelect extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			screensaverKey: screensaverArray[0].name,
-		}
-
-		if (localStorage.lastScreensaver && screensavers[localStorage.lastScreensaver]) {
-			this.state.screensaverKey = localStorage.lastScreensaver;
+			screensaverKey: "Blank",
+			screensavers: {
+				"blank": {
+					name: "Blank",
+					src: "https://blank.opl.io",
+					index: 0,
+				}
+			},
+			screensaverNames: ["Blank"],
 		}
 
 		this.props.onChange({
-			url: screensavers[this.state.screensaverKey].src
+			url: this.state.screensavers[this.state.screensaverKey.toLowerCase()].src
 		});
+
+		this.params = (new URL(document.location)).searchParams;
+	}
+
+	socketConnect() {
+		this.socket = new WebSocket(`ws://${this.params.get("wss")}/?channel=${this.params.get("channel")}`);
+
+		// Connection opened
+		this.socket.addEventListener('open', function () {
+		});
+
+		// Listen for messages
+		this.socket.addEventListener('message', this.handleSocketMessage.bind(this));
+	}
+
+	handleSocketMessage(event) {
+		const data = JSON.parse(event.data);
+		switch (data.type) {
+			case 'verify':
+				// Verify the client
+				this.socket.send(JSON.stringify({
+					type: "verify",
+					token: this.params.get("token"),
+				}));
+				break;
+			case 'verificationComplete':
+				this.socket.send(JSON.stringify({
+					type: "broadcast",
+					message: "Hello from the server!"
+				}));
+				break;
+			case 'switch':
+				this.screensaverSwitch(data.message);
+				break;
+			default:
+				console.log("unknown server message", data);
+				break;
+		}
+	}
+
+	componentDidMount() {
+		getListOfScreensavers().then(list => {
+			const screensavers = {};
+			for (let index = 0; index < list.length; index++) {
+				const element = list[index];
+				element.index = index;
+				screensavers[element.name.toLowerCase()] = element;
+			}
+			const screensaverNames = [];
+			for (let index = 0; index < list.length; index++) {
+				const element = list[index];
+				screensaverNames.push(element.name);
+			}
+			this.setState({
+				screensavers,
+				screensaverNames,
+			});
+
+			if (this.params.get("channel") !== null) {
+				this.socketConnect();
+			}
+		});
+	}
+
+	screensaverSwitch(screensaver = "blank") {
+		this.props.onChange({
+			url: this.state.screensavers[screensaver.toLowerCase()].src
+		});
+		this.setState({
+			screensaverKey: screensaver.toLowerCase(),
+		})
 	}
 
 	screensaverSwitchListener(e) {
-		localStorage.lastScreensaver = e.value;
-
-		this.setState({
-			screensaverKey: e.value,
-		})
-
-		this.props.onChange({
-			url: screensavers[e.value].src
-		});
+		this.screensaverSwitch(e.value);
+		if (this.socket) {
+			this.socket.send(JSON.stringify({
+				type: "switch",
+				data: e.value,
+			}));
+		}
 	}
 
 	render() {
-		const screensaver = screensavers[this.state.screensaverKey];
+		const screensaver = this.state.screensavers[this.state.screensaverKey.toLowerCase()];
 
 		return (
 			<div>
@@ -130,7 +145,7 @@ class ScreenSaverSelect extends React.Component {
 				</Monitor>
 				<SettingsContainer title="Screen Saver">
 					<Row>
-						<Select options={screensaverNames} selected={screensaver.index} onChange={this.screensaverSwitchListener.bind(this)} />
+						<Select options={this.state.screensaverNames} selected={screensaver.index} onChange={this.screensaverSwitchListener.bind(this)} />
 						<button disabled style={{ marginLeft: '5px', marginRight: '5px' }}>
 							Settings...
 						</button>
