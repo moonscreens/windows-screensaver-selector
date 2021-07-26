@@ -1,6 +1,3 @@
-# windows-screensaver-selector
+# [windows-screensaver-selector](https://screensavers.opl.io/)
 
-Gamers love their screensavers! It's a great way to keep the screen
-bright and fresh. Unfortunately, it's also a bit of a pain to
-select a screensaver. This tool is designed to make the process
-easier.
+Created as a utility to facilitate easier switching of chat integrated intro screens, styled after the windows 95 screensaver selector.
