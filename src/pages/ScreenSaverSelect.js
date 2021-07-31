@@ -120,6 +120,9 @@ class ScreenSaverSelect extends React.Component {
 		this.props.onChange({
 			url: this.state.screensavers[screensaver.toLowerCase()].src
 		});
+		if (this.select) {
+			this.select.setValue(screensaver);
+		}
 		this.setState({
 			screensaverKey: screensaver.toLowerCase(),
 		})
@@ -134,6 +137,9 @@ class ScreenSaverSelect extends React.Component {
 			}));
 		}
 	}
+	setSelectRef (ref) {
+		this.select = ref;
+	}
 
 	render() {
 		const screensaver = this.state.screensavers[this.state.screensaverKey.toLowerCase()];
@@ -145,7 +151,7 @@ class ScreenSaverSelect extends React.Component {
 				</Monitor>
 				<SettingsContainer title="Screen Saver">
 					<Row>
-						<Select options={this.state.screensaverNames} selected={screensaver.index} onChange={this.screensaverSwitchListener.bind(this)} />
+						<Select ref={this.setSelectRef.bind(this)} options={this.state.screensaverNames} selected={screensaver.index} onChange={this.screensaverSwitchListener.bind(this)} />
 						<button disabled style={{ marginLeft: '5px', marginRight: '5px' }}>
 							Settings...
 						</button>

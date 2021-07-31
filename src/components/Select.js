@@ -91,6 +91,12 @@ class Select extends React.Component {
 		window.removeEventListener('click', this.windowClickListenerBound);
 	}
 
+	setValue(value) {
+		
+		this.setState({
+			selected: this.props.options.indexOf(value),
+		});
+	}
 
 	windowClickListener(e) {
 		if (this.state.active && !e.target.className.includes('dropdown__')) {
