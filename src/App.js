@@ -48,11 +48,13 @@ class App extends React.Component {
 			screensaverURL: 'https://blank.opl.io/',
 		}
 
+		this.isNode = this.params.get("role") === "node";
+	}
+
+	componentDidMount() {
 		if (!this.isController) {
 			window.addEventListener('mousemove', this.mouseMoveListener.bind(this));
 		}
-
-		this.isNode = this.params.get("role") === "node";
 	}
 
 	mouseMoveListener() {

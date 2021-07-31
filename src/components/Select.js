@@ -92,7 +92,7 @@ class Select extends React.Component {
 	}
 
 	setValue(value) {
-		
+		console.log(value);
 		this.setState({
 			selected: this.props.options.indexOf(value),
 		});

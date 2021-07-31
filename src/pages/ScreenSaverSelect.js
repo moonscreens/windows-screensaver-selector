@@ -59,7 +59,7 @@ class ScreenSaverSelect extends React.Component {
 	}
 
 	socketConnect() {
-		this.socket = new WebSocket(`${window.location.host.match(/localhost/) ? 'wss' : 'wss'}://${this.params.get("wss")}/?channel=${this.params.get("channel")}`);
+		this.socket = new WebSocket(`${this.params.get("wss").match(/localhost/) ? 'wss' : 'wss'}://${this.params.get("wss")}/?channel=${this.params.get("channel")}`);
 
 		// Connection opened
 		/*this.socket.addEventListener('open', function () {
@@ -106,15 +106,17 @@ class ScreenSaverSelect extends React.Component {
 				element.index = index;
 				screensavers[element.name.toLowerCase()] = element;
 			}
+
 			const screensaverNames = [];
 			for (let index = 0; index < list.length; index++) {
 				const element = list[index];
 				screensaverNames.push(element.name);
 			}
+
 			this.setState({
 				screensavers,
 				screensaverNames,
-			});
+			}, () => { this.screensaverSwitch() });
 
 			if (this.params.get("channel") !== null) {
 				this.socketConnect();
@@ -122,7 +124,7 @@ class ScreenSaverSelect extends React.Component {
 		});
 	}
 
-	screensaverSwitch(screensaver = "blank") {
+	screensaverSwitch(screensaver = "Blank") {
 		this.props.onChange({
 			url: this.state.screensavers[screensaver.toLowerCase()].src
 		});
@@ -143,13 +145,14 @@ class ScreenSaverSelect extends React.Component {
 			}));
 		}
 	}
-	setSelectRef (ref) {
+
+	setSelectRef(ref) {
 		this.select = ref;
 	}
 
 	render() {
 		const screensaver = this.state.screensavers[this.state.screensaverKey.toLowerCase()];
-		
+
 		if (this.isNode) {
 			return <span></span>;
 		}
@@ -165,8 +168,8 @@ class ScreenSaverSelect extends React.Component {
 						<button disabled style={{ marginLeft: '5px', marginRight: '5px' }}>
 							Settings...
 						</button>
-						<button disabled>
-							Preview
+						<button>
+							Credits
 						</button>
 					</Row>
 					<Row style={{ margin: '6px 0px 0px 0px' }}>
