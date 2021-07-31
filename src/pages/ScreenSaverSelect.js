@@ -57,11 +57,15 @@ class ScreenSaverSelect extends React.Component {
 	}
 
 	socketConnect() {
-		this.socket = new WebSocket(`${window.location.host.match(/localhost/) ? 'ws' : 'wss'}://${this.params.get("wss")}/?channel=${this.params.get("channel")}`);
+		this.socket = new WebSocket(`${window.location.host.match(/localhost/) ? 'wss' : 'wss'}://${this.params.get("wss")}/?channel=${this.params.get("channel")}`);
 
 		// Connection opened
-		this.socket.addEventListener('open', function () {
-		});
+		/*this.socket.addEventListener('open', function () {
+		});*/
+
+		this.socket.addEventListener('close', function () {
+			setTimeout(this.socketConnect.bind(this), 1000);
+		}.bind(this));
 
 		// Listen for messages
 		this.socket.addEventListener('message', this.handleSocketMessage.bind(this));
