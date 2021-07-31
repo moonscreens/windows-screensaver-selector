@@ -54,6 +54,8 @@ class ScreenSaverSelect extends React.Component {
 		});
 
 		this.params = (new URL(document.location)).searchParams;
+
+		this.isNode = this.params.get("role") === "node";
 	}
 
 	socketConnect() {
@@ -147,6 +149,10 @@ class ScreenSaverSelect extends React.Component {
 
 	render() {
 		const screensaver = this.state.screensavers[this.state.screensaverKey.toLowerCase()];
+		
+		if (this.isNode) {
+			return <span></span>;
+		}
 
 		return (
 			<div>

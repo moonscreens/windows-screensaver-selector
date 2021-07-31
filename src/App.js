@@ -37,7 +37,8 @@ const Frame = styled.iframe`
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.isController = (document.location.search.match(/controller/) !== null);
+		this.params = (new URL(document.location)).searchParams;
+		this.isController = this.params.get("role") === "controller";
 
 		this.state = {
 			lastInteraction: 0,
@@ -50,9 +51,12 @@ class App extends React.Component {
 		if (!this.isController) {
 			window.addEventListener('mousemove', this.mouseMoveListener.bind(this));
 		}
+
+		this.isNode = this.params.get("role") === "node";
 	}
 
 	mouseMoveListener() {
+		if (this.isNode) return;
 		if (this.state.hidden && this.state.lastInteraction + this.state.delay < Date.now()) {
 			this.setState({
 				hidden: false,
