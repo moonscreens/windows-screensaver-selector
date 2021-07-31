@@ -2,7 +2,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const SelectEle = styled.div`
-	
 	font-family: "Pixelated MS Sans Serif",Arial;
 	-webkit-font-smoothing: none;
 	font-size: 11px;
@@ -92,7 +91,6 @@ class Select extends React.Component {
 	}
 
 	setValue(value) {
-		console.log(value);
 		this.setState({
 			selected: this.props.options.indexOf(value),
 		});
@@ -107,7 +105,12 @@ class Select extends React.Component {
 	}
 
 	clickListener(e) {
-		if (e.target.classList.contains('dropdown__option')) {
+		e.stopPropagation();
+		if (!this.state.active) {
+			this.setState({
+				active: true,
+			});
+		} else if (e.target.classList.contains('dropdown__option')) {
 			this.setState({
 				selected: Number(e.target.dataset.key),
 				active: false,
@@ -120,7 +123,7 @@ class Select extends React.Component {
 			}
 		} else {
 			this.setState({
-				active: !this.state.active,
+				active: false,
 			})
 		}
 	}
