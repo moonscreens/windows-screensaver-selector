@@ -4,8 +4,14 @@ import styled from '@emotion/styled';
 const WindowContainer = styled.div`
     transform: scale(1);
     min-width: 409px;
+	max-height: 100vh;
 	box-sizing: border-box;
 	position: absolute;
+`;
+
+const WindowBody = styled.div`
+	overflow-y: auto;
+	max-height: calc(100% - 20px);
 `;
 
 class Window extends React.Component {
@@ -107,9 +113,9 @@ class Window extends React.Component {
 						<button onClick={this.props.onExit} aria-label="Close" />
 					</div>
 				</div>
-				<div className="window-body">
+				<WindowBody>
 					{this.props.children}
-				</div>
+				</WindowBody>
 			</WindowContainer>
 		);
 	}
