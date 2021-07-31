@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 const WindowContainer = styled.div`
     transform: scale(1);
-    min-width: 409px;
+    max-width: 409px;
 	max-height: 100vh;
 	box-sizing: border-box;
 	position: absolute;
@@ -11,7 +11,8 @@ const WindowContainer = styled.div`
 
 const WindowBody = styled.div`
 	overflow-y: auto;
-	max-height: calc(100% - 20px);
+	max-height: calc(100vh - 35px);
+	padding-bottom: 5px;
 `;
 
 class Window extends React.Component {
@@ -29,24 +30,21 @@ class Window extends React.Component {
 				minHeight: this.props.minHeight + 'px',
 			},
 		}
-
-		if (!this.isController) {
-			if (this.props.x === 'auto') {
-				this.state.style.left = Math.floor(window.innerWidth / 2 - this.props.width / 2) + 'px';
-			}
-			if (this.props.y === 'auto') {
-				this.state.style.top = Math.floor(window.innerHeight / 2 - this.props.height / 2) + 'px';
-			}
-		} else {
+		if (this.isController) {
 			this.state.style = {
-				top: '0',
-				left: '0',
 				width: "100%",
-				height: "100%",
+				height: "auto",
 				minWidth: '0',
 				minHeight: '0',
 			}
 		};
+
+		if (this.props.x === 'auto') {
+			this.state.style.left = Math.floor(window.innerWidth / 2 - this.props.width / 2) + 'px';
+		}
+		if (this.props.y === 'auto') {
+			this.state.style.top = Math.floor(window.innerHeight / 2 - this.props.height / 2) + 'px';
+		}
 	}
 
 	updatePosition(x, y) {
@@ -130,9 +128,9 @@ Window.defaultProps = {
 	x: 'auto',
 	y: 'auto',
 	width: 409,
-	height: 485,
+	height: 454,
 	minWidth: 409,
-	minHeight: 485,
+	minHeight: 454,
 
 	onMinimize: () => { },
 	onMaximize: () => { },
