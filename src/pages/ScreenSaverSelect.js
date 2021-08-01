@@ -26,6 +26,17 @@ const Monitor = styled.div`
 		background-repeat: no-repeat;
     }
 `;
+const CreditsContainer = styled.div`
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
+	box-sizing: border-box;
+`;
 
 const Row = styled.div`
     display: flex;
@@ -146,7 +157,20 @@ class ScreenSaverSelect extends React.Component {
 		}
 		this.setState({
 			screensaverKey: screensaver.toLowerCase(),
+			credits: false,
 		})
+	}
+
+	toggleCredits() {
+		if (this.state.credits) {
+			this.setState({
+				credits: false
+			});
+		} else {
+			this.setState({
+				credits: this.state.screensavers[this.state.screensaverKey.toLowerCase()].credits
+			});
+		}
 	}
 
 	screensaverSwitchListener(e) {
@@ -173,7 +197,11 @@ class ScreenSaverSelect extends React.Component {
 		return (
 			<div>
 				<Monitor>
-					<div></div>
+					<div>{
+						this.state.credits && <CreditsContainer>
+							{this.state.credits}
+						</CreditsContainer>
+					}</div>
 				</Monitor>
 				<SettingsContainer title="Screen Saver">
 					<Row>
@@ -181,7 +209,7 @@ class ScreenSaverSelect extends React.Component {
 						<button disabled style={{ marginLeft: '5px', marginRight: '5px' }}>
 							Settings...
 						</button>
-						<button>
+						<button onClick={this.toggleCredits.bind(this)}>
 							Credits
 						</button>
 					</Row>
