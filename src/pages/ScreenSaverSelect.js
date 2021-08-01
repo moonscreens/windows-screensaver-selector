@@ -95,6 +95,12 @@ class ScreenSaverSelect extends React.Component {
 			case 'refresh':
 				window.location.reload();
 				break;
+			case 'ping':
+				this.socket.send(JSON.stringify({
+					type: "pong",
+					message: Date.now()
+				}));
+				break;
 			default:
 				console.log("unknown server message", data);
 				break;
