@@ -96,10 +96,14 @@ class ScreenSaverSelect extends React.Component {
 				window.location.reload();
 				break;
 			case 'ping':
+				console.log(`Ping with ${Date.now() - data.message}ms of latency`);
 				this.socket.send(JSON.stringify({
 					type: "pong",
 					message: Date.now()
 				}));
+				break;
+			case 'pong':
+				console.log(`Pong with ${Date.now() - data.message}ms of latency`);
 				break;
 			default:
 				console.log("unknown server message", data);
