@@ -92,6 +92,9 @@ class ScreenSaverSelect extends React.Component {
 			case 'switch':
 				this.screensaverSwitch(data.message);
 				break;
+			case 'refresh':
+				window.location.reload();
+				break;
 			default:
 				console.log("unknown server message", data);
 				break;
