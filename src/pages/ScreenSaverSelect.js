@@ -118,7 +118,7 @@ class ScreenSaverSelect extends React.Component {
 				screensaverNames,
 			}, () => { this.screensaverSwitch() });
 
-			if (this.params.get("channel") !== null) {
+			if (this.params.get("wss") !== null) {
 				this.socketConnect();
 			}
 		});

@@ -78,7 +78,7 @@ class App extends React.Component {
 
 	screensaverChangeListener(e) {
 		this.setState({
-			screensaverURL: e.url,
+			screensaverURL: e.url + "?" + this.params.toString().replace('channel=', 'channels='),
 		})
 	}
 
@@ -117,6 +117,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-
-
