@@ -4,7 +4,6 @@ import './App.css';
 
 import Tabs from './components/Tabs';
 import ScreenSaverSelect from './pages/ScreenSaverSelect';
-import Cursor from './components/Cursor';
 
 import styled from '@emotion/styled';
 
@@ -87,7 +86,6 @@ class App extends React.Component {
 			<>
 				{this.isController ? <></> : <Frame src={this.state.screensaverURL} />}
 				<Wrapper disabled={this.state.hidden}>
-					{this.isController ? <></> : <Cursor />}
 					<Window title="Display Properties" controlHelp={true} onExit={this.exitListener.bind(this)} onMinimize={this.exitListener.bind(this)}>
 						<Tabs activeTab={1}>
 							<div tab="Background" disabled>
