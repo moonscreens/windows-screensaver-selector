@@ -105,9 +105,9 @@ class App extends React.Component {
 						</Tabs>
 
 						<Row style={{ justifyContent: 'flex-end' }}>
-							<button onClick={this.exitListener.bind(this)}>Ok</button>
-							<button onClick={this.exitListener.bind(this)} style={{ margin: '0px 5px' }}>Cancel</button>
-							<button onClick={this.exitListener.bind(this)} style={{ marginRight: '4px' }}>Apply</button>
+							<button disabled={this.isController} onClick={this.exitListener.bind(this)}>Ok</button>
+							<button disabled={this.isController} onClick={this.exitListener.bind(this)} style={{ margin: '0px 5px' }}>Cancel</button>
+							<button disabled={this.isController} onClick={this.exitListener.bind(this)} style={{ marginRight: '4px' }}>Apply</button>
 						</Row>
 					</Window>
 				</Wrapper>
