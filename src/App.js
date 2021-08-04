@@ -85,7 +85,7 @@ class App extends React.Component {
 			<>
 				{this.isController ? <></> : <Frame src={this.state.screensaverURL} />}
 				<Wrapper disabled={this.state.hidden}>
-					<Window title="Display Properties" controlHelp={true} fullWidth={this.isController} onExit={this.exitListener.bind(this)} onMinimize={this.exitListener.bind(this)} width="409" height="454">
+					<Window title="Display Properties" controlHelp={true} fullWidth={this.isController} onExit={this.exitListener.bind(this)} onMinimize={this.exitListener.bind(this)} width="409" height="484">
 						<Tabs activeTab={1}>
 							<div tab="Background" disabled>
 								First tabs content

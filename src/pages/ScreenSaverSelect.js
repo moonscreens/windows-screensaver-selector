@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 
 import SettingsContainer from '../components/SettingsContainer';
 import Select from '../components/Select';
-import Checkbox from '../components/Checkbox';
 import { getListOfScreensavers } from '../utils/common';
 
 const Monitor = styled.div`
@@ -50,7 +49,6 @@ class ScreenSaverSelect extends React.Component {
 
 		this.state = {
 			screensaverKey: "Blank",
-			category: "classic",
 			screensavers: {
 				"blank": {
 					name: "Blank",
@@ -58,6 +56,9 @@ class ScreenSaverSelect extends React.Component {
 					index: 0,
 				}
 			},
+			categoryIndex: 0,
+			category: "classic",
+			categories: ["classic"],
 			screensaverNames: ["Blank"],
 		}
 
@@ -126,17 +127,23 @@ class ScreenSaverSelect extends React.Component {
 	componentDidMount() {
 		getListOfScreensavers().then(list => {
 			const screensavers = {};
+			const categoryObj = {}
 			for (let index = 0; index < list.length; index++) {
-				const element = list[index];
+				const element = {
+					content: list[index].content,
+					...list[index].metadata
+				};
 				element.index = index;
-				screensavers[element.metadata.name.toLowerCase()] = element.metadata;
+				screensavers[element.name.toLowerCase()] = element;
+				categoryObj[element.category] = true;
 			}
 
-			const screensaverNames = this.getCategoryList(list, this.state.category);
+			const screensaverNames = this.getCategoryList(screensavers, this.state.category);
 
 			this.setState({
 				screensavers,
 				screensaverNames,
+				categories: Object.keys(categoryObj),
 			}, () => { this.screensaverSwitch() });
 
 			if (this.params.get("wss") !== null) {
@@ -146,11 +153,13 @@ class ScreenSaverSelect extends React.Component {
 	}
 
 	updateCategory(category) {
+		console.log("updating to", category);
 		const screensaverNames = this.getCategoryList(this.state.screensavers, category);
-
 		this.setState({
 			category,
 			screensaverNames,
+			selectedIndex: 0,
+			categoryIndex: this.state.categories.indexOf(category),
 		});
 	}
 
@@ -189,14 +198,21 @@ class ScreenSaverSelect extends React.Component {
 		}
 	}
 
-	getCategoryList(list) {
+	getCategoryList(list, category = this.state.category) {
 		const finalScreensaverList = [];
-		for (let index = 0; index < list.length; index++) {
-			if (list[index].metadata.category === this.state.category) {
-				finalScreensaverList.push(list[index].metadata.name);
+		for (const key in list) {
+			if (Object.hasOwnProperty.call(list, key)) {
+				const element = list[key];
+				if (element.category.toLowerCase() === category.toLowerCase()) {
+					finalScreensaverList.push(element.name);
+				}
 			}
 		}
 		return finalScreensaverList;
+	}
+
+	categorySwitchListener(e) {
+		this.updateCategory(e.value);
 	}
 
 	setSelectRef(ref) {
@@ -229,13 +245,10 @@ class ScreenSaverSelect extends React.Component {
 							Credits
 						</button>
 					</Row>
+				</SettingsContainer>
+				<SettingsContainer title="Category">
 					<Row style={{ margin: '6px 0px 0px 0px' }}>
-						<Checkbox disabled>
-							Password protected
-						</Checkbox>
-						<button disabled={true} style={{ margin: '0px 6px' }}>
-							Change...
-						</button>
+						<Select options={this.state.categories} selected={this.categoryIndex} onChange={this.categorySwitchListener.bind(this)} />
 					</Row>
 				</SettingsContainer>
 				<SettingsContainer title="Energy saving features of monitor">
