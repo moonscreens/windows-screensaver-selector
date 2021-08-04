@@ -128,13 +128,13 @@ class ScreenSaverSelect extends React.Component {
 			for (let index = 0; index < list.length; index++) {
 				const element = list[index];
 				element.index = index;
-				screensavers[element.name.toLowerCase()] = element;
+				screensavers[element.metadata.name.toLowerCase()] = element.metadata;
 			}
 
 			const screensaverNames = [];
 			for (let index = 0; index < list.length; index++) {
 				const element = list[index];
-				screensaverNames.push(element.name);
+				screensaverNames.push(element.metadata.name);
 			}
 
 			this.setState({
