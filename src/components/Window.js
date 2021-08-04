@@ -18,7 +18,6 @@ const WindowBody = styled.div`
 class Window extends React.Component {
 	constructor(props) {
 		super(props);
-		this.isController = (document.location.search.match(/controller/) !== null);
 
 		this.state = {
 			style: {
@@ -30,12 +29,12 @@ class Window extends React.Component {
 				minHeight: this.props.minHeight + 'px',
 			},
 		}
-		if (this.isController) {
+		if (this.props.fullWidth) {
 			this.state.style = {
 				width: "100%",
 				height: "auto",
-				minWidth: '0',
-				minHeight: '0',
+				minWidth: '100%',
+				minHeight: '100%',
 			}
 		};
 
@@ -83,7 +82,7 @@ class Window extends React.Component {
 		this.mouseDown = false;
 	}
 	componentDidMount() {
-		if (!this.isController) {
+		if (!this.props.fullWidth) {
 			this.mouseMoveListenerFunc = this.mouseMoveListener.bind(this);
 			this.mouseUpListenerFunc = this.mouseUpListener.bind(this);
 
@@ -93,7 +92,7 @@ class Window extends React.Component {
 		}
 	}
 	componentWillUnmount() {
-		if (!this.isController) {
+		if (!this.props.fullWidth) {
 			window.removeEventListener('mousemove', this.mouseMoveListenerFunc, true);
 			window.removeEventListener('mouseleave', this.mouseUpListenerFunc, true);
 			window.removeEventListener('onblur', this.mouseUpListenerFunc, true);
