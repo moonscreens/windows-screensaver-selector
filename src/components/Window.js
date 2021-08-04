@@ -36,13 +36,13 @@ class Window extends React.Component {
 				minWidth: '100%',
 				minHeight: '100%',
 			}
-		};
-
-		if (this.props.x === 'auto') {
-			this.state.style.left = Math.floor(window.innerWidth / 2 - this.props.width / 2) + 'px';
-		}
-		if (this.props.y === 'auto') {
-			this.state.style.top = Math.floor(window.innerHeight / 2 - this.props.height / 2) + 'px';
+		} else {
+			if (this.props.x === 'auto') {
+				this.state.style.left = Math.floor(window.innerWidth / 2 - this.props.width / 2) + 'px';
+			}
+			if (this.props.y === 'auto') {
+				this.state.style.top = Math.floor(window.innerHeight / 2 - this.props.height / 2) + 'px';
+			}
 		}
 	}
 

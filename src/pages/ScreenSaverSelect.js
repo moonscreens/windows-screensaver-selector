@@ -50,6 +50,7 @@ class ScreenSaverSelect extends React.Component {
 
 		this.state = {
 			screensaverKey: "Blank",
+			category: "classic",
 			screensavers: {
 				"blank": {
 					name: "Blank",
@@ -131,11 +132,7 @@ class ScreenSaverSelect extends React.Component {
 				screensavers[element.metadata.name.toLowerCase()] = element.metadata;
 			}
 
-			const screensaverNames = [];
-			for (let index = 0; index < list.length; index++) {
-				const element = list[index];
-				screensaverNames.push(element.metadata.name);
-			}
+			const screensaverNames = this.getCategoryList(list, this.state.category);
 
 			this.setState({
 				screensavers,
@@ -145,6 +142,15 @@ class ScreenSaverSelect extends React.Component {
 			if (this.params.get("wss") !== null) {
 				this.socketConnect();
 			}
+		});
+	}
+
+	updateCategory(category) {
+		const screensaverNames = this.getCategoryList(this.state.screensavers, category);
+
+		this.setState({
+			category,
+			screensaverNames,
 		});
 	}
 
@@ -181,6 +187,16 @@ class ScreenSaverSelect extends React.Component {
 				data: e.value,
 			}));
 		}
+	}
+
+	getCategoryList(list) {
+		const finalScreensaverList = [];
+		for (let index = 0; index < list.length; index++) {
+			if (list[index].metadata.category === this.state.category) {
+				finalScreensaverList.push(list[index].metadata.name);
+			}
+		}
+		return finalScreensaverList;
 	}
 
 	setSelectRef(ref) {

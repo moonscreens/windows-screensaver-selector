@@ -43,7 +43,6 @@ class App extends React.Component {
 			lastInteraction: 0,
 			delay: 2500,
 			hidden: !this.isController,
-
 			screensaverURL: 'https://blank.opl.io/',
 		}
 
@@ -86,7 +85,7 @@ class App extends React.Component {
 			<>
 				{this.isController ? <></> : <Frame src={this.state.screensaverURL} />}
 				<Wrapper disabled={this.state.hidden}>
-					<Window title="Display Properties" controlHelp={true} fullWidth={this.isController} onExit={this.exitListener.bind(this)} onMinimize={this.exitListener.bind(this)} x="0" y="0" width="409" height="454">
+					<Window title="Display Properties" controlHelp={true} fullWidth={this.isController} onExit={this.exitListener.bind(this)} onMinimize={this.exitListener.bind(this)} width="409" height="454">
 						<Tabs activeTab={1}>
 							<div tab="Background" disabled>
 								First tabs content
