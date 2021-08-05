@@ -7,9 +7,14 @@
 	"display": "fullscreen",
 	"icons": [
 		{
-			"src": "/images/monitor.png",
+			"src": "/monitor.png",
 			"type": "image/png",
 			"sizes": "192x192"
+		},
+		{
+			"src": "/monitor.png",
+			"type": "image/png",
+			"sizes": "512x512"
 		}
 	]
 }

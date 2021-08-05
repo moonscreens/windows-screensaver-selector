@@ -7,6 +7,14 @@ import ScreenSaverSelect from './pages/ScreenSaverSelect';
 
 import styled from '@emotion/styled';
 
+if (window.location.host.match(/localhost/) < 0) {
+	if ('serviceWorker' in navigator) {
+		window.addEventListener('load', function () {
+			navigator.serviceWorker.register('/service-worker.js');
+		});
+	}
+}
+
 
 const Row = styled.div`
     display: flex;
