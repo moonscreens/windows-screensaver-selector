@@ -1,8 +1,15 @@
 {
-	"short_name": "Display Properties",
-	"name": "Display Properties",
+	"short_name": "Screensavers",
+	"name": "Windows 98 Screensavers",
 	"start_url": ".",
-	"display": "standalone",
-	"theme_color": "#ffffff",
-	"background_color": "#008083"
+	"theme_color": "#C0C0C0",
+	"background_color": "#1E7E82",
+	"display": "fullscreen",
+	"icons": [
+		{
+			"src": "/images/monitor.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		}
+	]
 }
