@@ -90,9 +90,15 @@ class Select extends React.Component {
 		window.removeEventListener('click', this.windowClickListenerBound);
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps.selected !== this.props.selected) {
+			this.setValue(this.props.selected);
+		}
+	}
+
 	setValue(value) {
 		this.setState({
-			selected: this.props.options.indexOf(value),
+			selected: value,
 		});
 	}
 
@@ -112,14 +118,11 @@ class Select extends React.Component {
 			});
 		} else if (e.target.classList.contains('dropdown__option')) {
 			this.setState({
-				selected: Number(e.target.dataset.key),
+				selected: e.target.textContent,
 				active: false,
 			});
 			if (this.props.onChange) {
-				this.props.onChange({
-					key: Number(e.target.dataset.key),
-					value: this.props.options[Number(e.target.dataset.key)],
-				})
+				this.props.onChange(e.target.textContent)
 			}
 		} else {
 			this.setState({
@@ -142,7 +145,7 @@ class Select extends React.Component {
 		}
 		return <SelectEle className={this.state.active ? 'active ' : ' '} onClick={this.clickListener.bind(this)}>
 			<div className="dropdown__selected">
-				{this.props.options[this.state.selected]}
+				{this.props.options[this.props.options.indexOf(this.state.selected)]}
 			</div>
 			<div className="dropdown__options">
 				{options}

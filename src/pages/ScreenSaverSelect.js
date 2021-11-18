@@ -56,7 +56,6 @@ class ScreenSaverSelect extends React.Component {
 					index: 0,
 				}
 			},
-			categoryIndex: 0,
 			category: "classic",
 			categories: ["classic"],
 			screensaverNames: ["Blank"],
@@ -103,6 +102,7 @@ class ScreenSaverSelect extends React.Component {
 				}));
 				break;
 			case 'switch':
+				console.log("switch", data.message);
 				this.screensaverSwitch(data.message);
 				break;
 			case 'refresh':
@@ -158,12 +158,12 @@ class ScreenSaverSelect extends React.Component {
 		this.setState({
 			category,
 			screensaverNames,
-			selectedIndex: 0,
-			categoryIndex: this.state.categories.indexOf(category),
 		});
 	}
 
 	screensaverSwitch(screensaver = "Blank") {
+		this.updateCategory(this.state.screensavers[screensaver.toLowerCase()].category);
+
 		this.props.onChange({
 			url: this.state.screensavers[screensaver.toLowerCase()].src
 		});
@@ -188,12 +188,12 @@ class ScreenSaverSelect extends React.Component {
 		}
 	}
 
-	screensaverSwitchListener(e) {
-		this.screensaverSwitch(e.value);
+	screensaverSwitchListener(value) {
+		this.screensaverSwitch(value);
 		if (this.socket) {
 			this.socket.send(JSON.stringify({
 				type: "switch",
-				data: e.value,
+				data: value,
 			}));
 		}
 	}
@@ -211,8 +211,8 @@ class ScreenSaverSelect extends React.Component {
 		return finalScreensaverList;
 	}
 
-	categorySwitchListener(e) {
-		this.updateCategory(e.value);
+	categorySwitchListener(value) {
+		this.updateCategory(value);
 	}
 
 	setSelectRef(ref) {
@@ -237,7 +237,7 @@ class ScreenSaverSelect extends React.Component {
 				</Monitor>
 				<SettingsContainer title="Screen Saver">
 					<Row>
-						<Select ref={this.setSelectRef.bind(this)} options={this.state.screensaverNames} selected={screensaver.index} onChange={this.screensaverSwitchListener.bind(this)} />
+						<Select ref={this.setSelectRef.bind(this)} options={this.state.screensaverNames} selected={screensaver.name} onChange={this.screensaverSwitchListener.bind(this)} />
 						<button disabled style={{ marginLeft: '5px', marginRight: '5px' }}>
 							Settings...
 						</button>
@@ -248,7 +248,7 @@ class ScreenSaverSelect extends React.Component {
 				</SettingsContainer>
 				<SettingsContainer title="Category">
 					<Row style={{ margin: '6px 0px 0px 0px' }}>
-						<Select options={this.state.categories} selected={this.categoryIndex} onChange={this.categorySwitchListener.bind(this)} />
+						<Select options={this.state.categories} selected={this.state.category} onChange={this.categorySwitchListener.bind(this)} />
 					</Row>
 				</SettingsContainer>
 				<SettingsContainer title="Energy saving features of monitor">
