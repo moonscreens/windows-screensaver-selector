@@ -256,12 +256,17 @@ class ScreenSaverSelect extends React.Component {
 						<img alt="Moon Star" src="/energystar.png" style={{ margin: '5px 20px 0px', pointerEvents: 'none' }} />
 						<div>
 							<Row>
-								To adjust the power settings for your monitor, click Settings
+								{this.params.get("wss") === null ? "To adjust the power settings for your monitor, click Settings" : "Run into an issue? Try refreshing!"}
 							</Row>
 							<Row style={{ justifyContent: "flex-end" }}>
-								<button disabled>
-									Settings...
-								</button>
+								{ this.params.get("wss") === null ? <button>Settings...</button> : <button onClick={() => {
+									this.socket.send(JSON.stringify({
+										type: "refresh",
+									}));
+									window.location.reload();
+								}}>
+									Refresh
+								</button>}
 							</Row>
 						</div>
 					</Row>
