@@ -46,15 +46,15 @@ class App extends React.Component {
 		super(props);
 		this.params = (new URL(document.location)).searchParams;
 		this.isController = this.params.get("role") === "controller";
+		this.isNode = this.params.get("role") === "node";
 
 		this.state = {
 			lastInteraction: 0,
 			delay: 2500,
 			hidden: !this.isController,
-			screensaverURL: 'https://blank.opl.io/',
+			screensaverURL: this.isNode ? 'https://moon-classic.opl.io/' : 'https://blank.opl.io/',
 		}
 
-		this.isNode = this.params.get("role") === "node";
 	}
 
 	componentDidMount() {
