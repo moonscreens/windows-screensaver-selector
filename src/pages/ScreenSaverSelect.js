@@ -48,17 +48,17 @@ class ScreenSaverSelect extends React.Component {
 		super(props);
 
 		this.state = {
-			screensaverKey: "Blank",
+			screensaverKey: "3D Pipes",
 			screensavers: {
-				"blank": {
-					name: "Blank",
-					src: "https://blank.opl.io",
+				"3D Pipes": {
+					name: "3D Pipes",
+					src: "https://3d-pipes.opl.io/",
 					index: 0,
 				}
 			},
 			category: "classic",
 			categories: ["classic"],
-			screensaverNames: ["Blank"],
+			screensaverNames: ["3D Pipes"],
 		}
 
 		this.props.onChange({
