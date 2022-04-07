@@ -1,21 +1,22 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
+body,
+html {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
 }
 
 * {
-    user-select: none;
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
-    cursor: default;
-    background-repeat: no-repeat;
+	user-select: none;
+	image-rendering: pixelated;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: crisp-edges;
+	cursor: default;
+	background-repeat: no-repeat;
 }
 
 iframe {
-    pointer-events: none;
+	pointer-events: none;
 }

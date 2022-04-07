@@ -17,8 +17,8 @@ if (window.location.host.match(/localhost/) < 0) {
 
 
 const Row = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 `;
 const Wrapper = styled.div`

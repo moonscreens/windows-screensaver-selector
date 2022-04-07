@@ -2,8 +2,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const WindowContainer = styled.div`
-    transform: scale(1);
-    max-width: 409px;
+	transform: scale(1);
+	max-width: 409px;
 	max-height: 100vh;
 	box-sizing: border-box;
 	position: absolute;

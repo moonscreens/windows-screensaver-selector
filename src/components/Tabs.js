@@ -12,29 +12,29 @@ const TabsContainer = styled.div`
 `;
 const Tabs = styled.div`
 	display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    padding-left: 2px;
-    position: relative;
-    z-index: 5;
+	justify-content: flex-start;
+	align-items: flex-end;
+	padding-left: 2px;
+	position: relative;
+	z-index: 5;
 `;
 const Tab = styled.div`
 	position: relative;
-    background: #C0C0C0;
+	background: #C0C0C0;
 
-    padding: 3px;
-    border: 1px outset #ffffff;
-    border-right: 1px solid black;
-    border-bottom: none;
-    border-radius: 2px 2px 0 0;
+	padding: 3px;
+	border: 1px outset #ffffff;
+	border-right: 1px solid black;
+	border-bottom: none;
+	border-radius: 2px 2px 0 0;
 
-    &.active {
-        padding: 4px;
-        border-bottom: 1px solid #C0C0C0;
-        box-shadow: 0px 1px 0px #C0C0C0;
-        margin: -1px;
-        z-index: 2;
-    }
+	&.active {
+		padding: 4px;
+		border-bottom: 1px solid #C0C0C0;
+		box-shadow: 0px 1px 0px #C0C0C0;
+		margin: -1px;
+		z-index: 2;
+	}
 
 	&[data-disabled="true"] {
 		color: grey;
@@ -43,9 +43,9 @@ const Tab = styled.div`
 `;
 
 const TabContentContainer = styled.div`
-    ${window_shadow}
+	${window_shadow}
 	position: relative;
-    border: 1px outset #fff;
+	border: 1px outset #fff;
 	padding: 13px;
 	min-height: 370px;
 	box-sizing: border-box;

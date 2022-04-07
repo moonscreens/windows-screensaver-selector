@@ -21,11 +21,11 @@ class Checkbox extends React.Component {
 
 	render() {
 		return <div>
-			<input 
+			<input
 				disabled={this.props.disabled}
-				checked={this.state.active} 
-				type="checkbox" 
-				id={this.state.uid} 
+				checked={this.state.active}
+				type="checkbox"
+				id={this.state.uid}
 				onClick={this.clickListener.bind(this)} />
 			<label htmlFor={this.state.uid}>{this.props.children}</label>
 		</div>

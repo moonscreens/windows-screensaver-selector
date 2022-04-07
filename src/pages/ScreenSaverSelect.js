@@ -8,22 +8,22 @@ import { getListOfScreensavers } from '../utils/common';
 
 const Monitor = styled.div`
 	background-image: url('/monitor.png');
-    width: 184px;
-    height: 169px;
-    padding: 16px 16px 40px 15px;
-    box-sizing: border-box;
+	width: 184px;
+	height: 169px;
+	padding: 16px 16px 40px 15px;
+	box-sizing: border-box;
 
-    margin: auto auto 20px auto;
+	margin: auto auto 20px auto;
 
-    & > div {
-        width: 100%;
+	& > div {
+		width: 100%;
 		height: 100%;
 		overflow: hidden;
 		border: none;
 		background-color: #008083;
 		background-position: center;
 		background-repeat: no-repeat;
-    }
+	}
 `;
 const CreditsContainer = styled.div`
 	width: 100%;
@@ -38,8 +38,8 @@ const CreditsContainer = styled.div`
 `;
 
 const Row = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 `;
 
@@ -259,7 +259,7 @@ class ScreenSaverSelect extends React.Component {
 								{this.params.get("wss") === null ? "To adjust the power settings for your monitor, click Settings" : "Run into an issue? Try refreshing!"}
 							</Row>
 							<Row style={{ justifyContent: "flex-end" }}>
-								{ this.params.get("wss") === null ? <button>Settings...</button> : <button onClick={() => {
+								{this.params.get("wss") === null ? <button>Settings...</button> : <button onClick={() => {
 									this.socket.send(JSON.stringify({
 										type: "refresh",
 									}));
