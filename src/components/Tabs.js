@@ -62,6 +62,7 @@ class TabComponent extends React.Component {
 
 
 	activateTab(e) {
+		if (e.target.dataset.disabled === 'true') return;
 		this.setState({
 			activeTab: Number(e.currentTarget.dataset.tab),
 		});
@@ -82,7 +83,7 @@ class TabComponent extends React.Component {
 				className={index === this.state.activeTab ? 'active' : ''}
 				data-tab={index}
 				data-disabled={tab.props.disabled}
-				/*onClick={this.activateTab.bind(this)}*/>
+				onClick={this.activateTab.bind(this)}>
 				{tab.props.tab}
 			</Tab>);
 		}
