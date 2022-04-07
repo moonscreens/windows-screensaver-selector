@@ -35,6 +35,9 @@ const CreditsContainer = styled.div`
 	align-items: center;
 	padding: 5px;
 	box-sizing: border-box;
+	&.clear {
+		background: transparent;
+	}
 `;
 
 const Row = styled.div`
@@ -117,6 +120,12 @@ class ScreenSaverSelect extends React.Component {
 				break;
 			case 'pong':
 				console.log(`Pong with ${Date.now() - data.message}ms of latency`);
+				break;
+			case 'count':
+				this.setState({
+					verifiedClients: data.message.verified,
+					clients: data.message.total,
+				})
 				break;
 			default:
 				console.log("unknown server message", data);
@@ -230,8 +239,10 @@ class ScreenSaverSelect extends React.Component {
 			<div>
 				<Monitor>
 					<div>{
-						this.state.credits && <CreditsContainer>
+						this.state.credits ? <CreditsContainer>
 							{this.state.credits}
+						</CreditsContainer> : <CreditsContainer className='clear'>
+							clients: {this.state.clients} <br /> verified clients: {this.state.verifiedClients}
 						</CreditsContainer>
 					}</div>
 				</Monitor>
