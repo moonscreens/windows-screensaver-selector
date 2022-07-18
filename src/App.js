@@ -88,7 +88,7 @@ class App extends React.Component {
 		string += + (e.url.split('#')[1] || '');
 
 		this.setState({
-			screensaverURL: string.replace(/(\?|\&|\?0|\&0)$/, ''),
+			screensaverURL: string.replace(/(\?|&|\?0|&0)$/, ''),
 		})
 	}
 
