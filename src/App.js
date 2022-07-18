@@ -83,8 +83,12 @@ class App extends React.Component {
 	}
 
 	screensaverChangeListener(e) {
+		let string = e.url.split('#')[0];
+		string += (e.url.includes('?') ? '&' : "?") + this.params.toString().replace('channel=', 'channels=');
+		string += + (e.url.split('#')[1] || '');
+
 		this.setState({
-			screensaverURL: e.url.split('#')[0] + (e.url.includes('?') ? '&' : "?") + this.params.toString().replace('channel=', 'channels=') + (e.url.split('#')[1] || ''),
+			screensaverURL: string.replace(/(\?|\&|\?0|\&0)$/, ''),
 		})
 	}
 
